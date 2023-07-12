@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "mPFC-web",
     "section": "",
-    "text": "Barcode image\nThis just a test!"
+    "text": "This just a test!"
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,19 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#scrnaseq-data",
+    "href": "index.html#scrnaseq-data",
+    "title": "mPFC-web",
+    "section": "",
+    "text": "This just a test!"
+  },
+  {
+    "objectID": "index.html#in-situ-data",
+    "href": "index.html#in-situ-data",
+    "title": "mPFC-web",
+    "section": "in situ data",
+    "text": "in situ data"
   }
 ]
