@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "index.html#scrnaseq-data",
+    "href": "index.html#scrnaseq-data",
     "title": "mPFC-web",
-    "section": "",
-    "text": "This just a test!"
+    "section": "scRNAseq data",
+    "text": "scRNAseq data"
   },
   {
     "objectID": "about.html",
@@ -14,17 +14,17 @@
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "index.html#scrnaseq-data",
-    "href": "index.html#scrnaseq-data",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "mPFC-web",
     "section": "",
-    "text": "This just a test!"
+    "text": "Warning: package 'tidyverse' was built under R version 4.2.3\n\n\nWarning: package 'ggplot2' was built under R version 4.2.3\n\n\nWarning: package 'tibble' was built under R version 4.2.3\n\n\nWarning: package 'tidyr' was built under R version 4.2.3\n\n\nWarning: package 'readr' was built under R version 4.2.3\n\n\nWarning: package 'purrr' was built under R version 4.2.3\n\n\nWarning: package 'dplyr' was built under R version 4.2.3\n\n\nWarning: package 'stringr' was built under R version 4.2.2\n\n\nWarning: package 'forcats' was built under R version 4.2.3\n\n\nWarning: package 'lubridate' was built under R version 4.2.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\nThe legacy packages maptools, rgdal, and rgeos, underpinning this package\nwill retire shortly. Please refer to R-spatial evolution reports on\nhttps://r-spatial.org/r/2023/05/15/evolution4.html for details.\nThis package is now running under evolution status 0 \n\nRegistered S3 method overwritten by 'SeuratDisk':\n  method            from  \n  as.sparse.H5Group Seurat"
   },
   {
-    "objectID": "index.html#in-situ-data",
-    "href": "index.html#in-situ-data",
+    "objectID": "index.html#pfc-scrnaseq",
+    "href": "index.html#pfc-scrnaseq",
     "title": "mPFC-web",
-    "section": "in situ data",
-    "text": "in situ data"
+    "section": "PFC scRNAseq",
+    "text": "PFC scRNAseq"
   }
 ]

@@ -5,122 +5,60 @@ date: 2023.07.12
 ---
 
 
-## scRNAseq data
-
-This just a test!
-
 ```{r}
 #| echo: false
+#| message: false
+#| warning: false
 
 library(vitessceR)
+library(tidyverse)
+library(SeuratDisk)
 
-base_url <- "https://s3.amazonaws.com/vitessce-data/0.0.31/master_release/linnarsson/"
-
-# Create Vitessce view config
-vc <- VitessceConfig$new("Codeluppi et al., Nature Methods 2018")
-dataset <- vc$add_dataset("Codeluppi")$add_file(
-  url = paste0(base_url, "linnarsson.cells.json"),
-  data_type = DataType$CELLS,
-  file_type = FileType$CELLS_JSON
-)$add_file(
-  url = paste0(base_url, "linnarsson.cell-sets.json"),
-  data_type = DataType$CELL_SETS,
-  file_type = FileType$CELL_SETS_JSON
-)$add_file(
-  url = paste0(base_url, "linnarsson.molecules.json"),
-  data_type = DataType$MOLECULES,
-  file_type = FileType$MOLECULES_JSON
-)$add_file(
-  url = paste0(base_url, "linnarsson.clusters.json"),
-  data_type = DataType$EXPRESSION_MATRIX,
-  file_type = FileType$CLUSTERS_JSON
-)$add_file(
-  url = paste0(base_url, "linnarsson.raster.json"),
-  data_type = DataType$RASTER,
-  file_type = FileType$RASTER_JSON
-)
-
-desc <- vc$add_view(dataset, Component$DESCRIPTION)
-desc <- desc$set_props(description = "Codeluppi et al., Nature Methods 2018: Spatial organization of the somatosensory cortex revealed by osmFISH.")
-
-spatial <- vc$add_view(dataset, Component$SPATIAL)
-spatial_layers <- vc$add_view(dataset, Component$LAYER_CONTROLLER)
-
-scatterplot_pca <- vc$add_view(dataset, Component$SCATTERPLOT, mapping = "PCA")
-scatterplot_tsne <- vc$add_view(dataset, Component$SCATTERPLOT, mapping = "t-SNE")
-status <- vc$add_view(dataset, Component$STATUS)
-
-cell_sets <- vc$add_view(dataset, Component$CELL_SETS)
-gene_list <- vc$add_view(dataset, Component$GENES)
-heatmap <- vc$add_view(dataset, Component$HEATMAP)$set_props(transpose = TRUE)
-
-vc$layout(hconcat(
-  vconcat(vconcat(desc, status), spatial_layers),
-  vconcat(heatmap, spatial),
-  vconcat(scatterplot_tsne, scatterplot_pca),
-  vconcat(gene_list, cell_sets)
-))
+#Adult.Ex <- readRDS('data/Adult.Ex.rds')
 ```
 
 
+
+## scRNAseq
+
 ```{r}
+#| echo: false
 #| message: false
-#| echo: false
+#| warning: false
 
-# Render the Vitessce widget
-vc$widget(theme = "light", width = "100%")
-```
+adata_url <- "https://huggingface.co/datasets/TigerZheng/PFCdata/resolve/main/Adult_Ex.zarr"
+#adata_url <- "https://pfcweb.oss-rg-china-mainland.aliyuncs.com/Adult_Ex.zarr"
+#adata_path <- "data/Adult_Ex.zarr"
+vc <- VitessceConfig$new(schema_version = "1.0.0", name = "Adult_Ex config")
+dataset <- vc$add_dataset(name = "Adult_Ex", uid = "Adult_Ex")
 
-
-
-## in situ data
-
-```{r}
-#| echo: false
-
-library(vitessceR)
-
-# Define the image file options object.
-file_options = obj_list(
-  schemaVersion = "0.0.2",
-  images = list(
-      obj_list(
-        name = "My Image",
-        type = "ome-tiff",
-        url = "https://vitessce-demo-data.storage.googleapis.com/exemplar-001/exemplar-001.pyramid.ome.tif"
-      )
-  ),
-  renderLayers = list(
-    "My Image"
-  )
-)
-
-# Create Vitessce view config
-vc <- VitessceConfig$new("My config")
-dataset <- vc$add_dataset("My dataset")$add_file(
-  data_type = DataType$RASTER,
-  file_type = FileType$RASTER_JSON,
-  options = file_options
-)
-spatial <- vc$add_view(dataset, Component$SPATIAL)
-spatial_layers <- vc$add_view(dataset, Component$LAYER_CONTROLLER)
-status <- vc$add_view(dataset, Component$STATUS)
-desc <- vc$add_view(dataset, Component$DESCRIPTION)
-desc <- desc$set_props(description = "Visualization of an OME-TIFF file.")
-vc$layout(hconcat(
-  spatial,
-  hconcat(spatial_layers, vconcat(desc, status))
+dataset <- dataset$add_object(AnnDataWrapper$new(
+  #adata_path = adata_path,
+  adata_url = adata_url,
+  obs_feature_matrix_path = "X",
+  obs_embedding_paths = c("obsm/X_umap"),
+  obs_embedding_names = c("UMAP"),
+  obs_set_paths = c("obs/SubType_Layer", "obs/SubType"),
+  obs_set_names = c("SubType_Layer", "SubType")
 ))
+
+scatterplot_umap <- vc$add_view(dataset, Component$SCATTERPLOT, mapping = "UMAP",w=8)
+cell_sets <- vc$add_view(dataset, Component$CELL_SETS,w=4)
+genes <- vc$add_view(dataset, Component$GENES,w=4)
+
+vc$layout(
+  hconcat(
+    scatterplot_umap,
+    vconcat(cell_sets, genes)
+  ))
+vc$widget(theme = "light")
 ```
 
 
-```{r}
-#| message: false
-#| echo: false
 
-# Render the Vitessce widget
-vc$widget(theme = "light", width = "100%")
-```
+
+
+
 
 
 
