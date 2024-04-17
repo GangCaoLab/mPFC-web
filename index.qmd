@@ -42,9 +42,9 @@ dataset <- dataset$add_object(AnnDataWrapper$new(
   obs_set_names = c("SubType_Layer", "SubType")
 ))
 
-scatterplot_umap <- vc$add_view(dataset, Component$SCATTERPLOT, mapping = "UMAP",w=8)
-cell_sets <- vc$add_view(dataset, Component$CELL_SETS,w=4)
-genes <- vc$add_view(dataset, Component$GENES,w=4)
+scatterplot_umap <- vc$add_view(dataset, Component$SCATTERPLOT, mapping = "UMAP")
+cell_sets <- vc$add_view(dataset, Component$CELL_SETS)
+genes <- vc$add_view(dataset, Component$GENES)
 
 vc$layout(
   hconcat(
